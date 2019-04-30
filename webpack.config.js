@@ -45,6 +45,9 @@ const CleanWebpackPlugin = require("clean-webpack-plugin");
 const OptimizeCssAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const BundleAnalyzerPlugin = require("webpack-bundle-analyzer")
+  .BundleAnalyzerPlugin;
+
 const WebpackBuildNotifierPlugin = require("webpack-build-notifier");
 
 module.exports = {
@@ -57,21 +60,7 @@ module.exports = {
     overlay: {
       warnings: true,
       errors: true
-    },
-    //disableHostCheck: true,
-    //https: true,
-    //allowedHosts: [
-    //  "localhost",
-    //  "subdomain.host.com",
-    //  "subdomain2.host.com",
-    //  "host2.com"
-    //],
-    //bonjour: true,
-    //clientLogLevel: 'none',
-    //host: '0.0.0.0',
-    //hot: true, //Enable webpack's Hot Module Replacement feature
-    //http2: true, //HTTP/2 with a self-signed certificate
-    //stats: 'errors-only'
+    }
   },
   module: {
     rules: [
@@ -135,7 +124,7 @@ module.exports = {
         use: {
           loader: "html-loader",
           options: {
-            attrs: [":data-src"]
+            attrs: ["img:data-src"]
           }
         }
       },
@@ -166,8 +155,9 @@ module.exports = {
   },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: "[name].css",
-      chunkFilename: "[id].css"
+      filename: "[name]_[hash:5].css",
+      //chunkFilename: "[id].css"
+      chunkFilename: "[name]_[hash:5].css"
     }),
     new CleanWebpackPlugin({
       root: path.join(__dirname, "dist"),
@@ -178,15 +168,18 @@ module.exports = {
       title: "My Project Webpack Build",
       logo: path.resolve("./static/cropped-favicon.png"),
       suppressSuccess: true
-    })
+    }),
+    new BundleAnalyzerPlugin()
   ],
   entry: {
-    app: "./src/index"
+    main: "./src/main",
+    main2: "./src/main2",
+    main3: "./src/main3"
   },
   output: {
     pathinfo: false,
-    chunkFilename: "[name].js",
-    filename: "[name].js"
+    chunkFilename: "[name]_[hash:5].js",
+    filename: "[name]_[hash:5].js"
   },
   optimization: {
     minimizer: [
@@ -201,7 +194,7 @@ module.exports = {
         }
       }),
       new HtmlWebpackPlugin({
-        hash: true,
+        //hash: true,
         template: "./src/index.html",
         filename: "index.html",
         chunksSortMode: "none",
@@ -219,9 +212,9 @@ module.exports = {
           test: /[\\/]node_modules[\\/]/
         }
       },
-      chunks: "async",
+      chunks: "all",
       minChunks: 1,
-      minSize: 30000,
+      minSize: 20000,
       name: true
     }
   }
