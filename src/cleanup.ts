@@ -1,83 +1,81 @@
-import trim from "lodash-es/trim";
-import toUpper from "lodash-es/toUpper";
-import lowerCase from "lodash-es/lowerCase";
-import jion from "lodash-es/join";
-import reverse from "lodash-es/reverse";
-import find from "lodash-es/find";
-import reduce from "lodash-es/reduce";
-import cloneDeep from "lodash-es/cloneDeep";
-import sortedUniq from "lodash-es/sortedUniq";
-import assign from "lodash-es/assign";
-import times from "lodash-es/times";
-import map from "lodash-es/map";
-import keyBy from "lodash-es/keyBy";
-import debounce from "lodash-es/debounce";
-import filter from "lodash-es/filter";
-import includes from "lodash-es/includes";
-
-/*
 // dayjs
 const dayjs = require("dayjs");
+//import dayjs from "dayjs"
 
 // dayjs ⚠️ requires utc plugin
 const utc = require("dayjs/plugin/utc");
+//import utc from "dayjs/plugin/utc"
 
 // dayjs ⚠️ requires LocalizedFormat plugin
 const LocalizedFormat = require("dayjs/plugin/localizedFormat");
+//import LocalizedFormat from "dayjs/plugin/localizedFormat"
 
 // dayjs ⚠️ requires isSameOrBefore plugin
 const isSameOrBefore = require("dayjs/plugin/isSameOrBefore");
+//import isSameOrBefore from "dayjs/plugin/isSameOrBefore"
 
 // dayjs ⚠️ requires isSameOrAfter plugin
 const isSameOrAfter = require("dayjs/plugin/isSameOrAfter");
+//import isSameOrAfter from "dayjs/plugin/isSameOrAfter"
 
 // dayjs ⚠️ requires relativeTime plugin
-//const relativeTime = require("dayjs/plugin/relativeTime");
+const relativeTime = require("dayjs/plugin/relativeTime");
+//import relativeTime from "dayjs/plugin/relativeTime"
 
 // dayjs ⚠️ requires customParseFormat plugin
 const customParseFormat = require("dayjs/plugin/customParseFormat");
+//import customParseFormat from "dayjs/plugin/customParseFormat"
 
 // dayjs ⚠️ requires dayOfYear plugin
 const dayOfYear = require("dayjs/plugin/dayOfYear");
+//import dayOfYear from "dayjs/plugin/dayOfYear"
 
 // dayjs ⚠️ requires weekOfYear plugin
 const weekOfYear = require("dayjs/plugin/weekOfYear");
+//import weekOfYear from "dayjs/plugin/weekOfYear"
 
 // dayjs ⚠️ requires isoWeeksInYear plugin
 const isoWeeksInYear = require("dayjs/plugin/isoWeeksInYear");
+//import isoWeeksInYear from "dayjs/plugin/isoWeeksInYear"
 
 // dayjs ⚠️ requires minMax plugin
 const minMax = require("dayjs/plugin/minMax");
+//import minMax from "dayjs/plugin/minMax"
 
 // dayjs ⚠️ requires advancedFormat plugin to support more format tokens
 const advancedFormat = require("dayjs/plugin/customParseFormat");
+//import advancedFormat from "dayjs/plugin/customParseFormat"
 
 // dayjs ⚠️ requires isBetween plugin
 const isBetween = require("dayjs/plugin/isBetween");
+//import isBetween from "dayjs/plugin/isBetween"
 
 // dayjs ⚠️ requires isLeapYear plugin
 const isLeapYear = require("dayjs/plugin/isLeapYear");
+//import isLeapYear from "dayjs/plugin/isLeapYear"
 
 // dayjs ⚠️ requires weekDay plugin
 const weekDay = require("dayjs/plugin/weekDay");
+//import weekDay from "dayjs/plugin/weekDay"
 
 // dayjs ⚠️ requires quarterOfYear plugin
 const quarterOfYear = require("dayjs/plugin/quarterOfYear");
+//import quarterOfYear from "dayjs/plugin/quarterOfYear"
 
 // dayjs ⚠️ requires toArray plugin
 const toArray = require("dayjs/plugin/toArray");
+//import toArray from "dayjs/plugin/toArray"
 
 // dayjs ⚠️ requires toObject plugin
 const toObject = require("dayjs/plugin/toObject");
+//import toObject from "dayjs/plugin/toObject"
 
 // dayjs ⚠️ requires calendar plugin
 const calendar = require("dayjs/plugin/calendar");
+//import calendar from "dayjs/plugin/calendar"
 
-*/
-import dayjs from "dayjs";
-import relativeTime from "dayjs/plugin/relativeTime";
-dayjs('2018-08-08') // parse
-/*
+
+
 // dayjs
 dayjs.extend(relativeTime);
 dayjs("2007-01-27").to(dayjs("2007-01-29"));
@@ -232,75 +230,6 @@ dayjs.extend(isLeapYear);
 dayjs("2000-01-01").isLeapYear();
 // => true
 
-*/
+
 // dayjs
 dayjs(new Date()).isValid();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-import "./style.scss";
-/*
-function validateEmail() {
-  // Validate email here and show error message if not valid
-}
-
-var emailInput = document.getElementById("email-field");
-emailInput.addEventListener("keyup", debounce(validateEmail, 500));
-*/
-let x = `Hello     `;
-alert(x + `James`);
-alert(trim(x) + `James`);
-alert(toUpper(trim(x)));
-alert(jion(["Another", "module", "loaded!"], lowerCase("James")));
-
-import { render, html } from "lit-html";
-// ES6
-import { format, cancel, register } from 'timeago.js';
-
-class MyComponent extends HTMLElement {
-  text: unknown;
-  comment: unknown;
-
-  static get observedAttributes() {
-    return ["text", "comment"];
-  }
-  constructor() {
-    super();
-  }
-  connectedCallback() {
-    this.attachShadow({ mode: "open" });
-    const template = html`
-      <style>
-        h1 {
-          color: var(--wc-color, green);
-        }
-      </style>
-      <h1>A long time ago ${format(1556658809847)}</h1>
-      <h1>${this.text} Hello world! from inside web component</h1>
-      <h1>
-        ${this.comment} Hello world! from inside web component..Hay James
-      </h1>
-    `;
-    render(template, this.shadowRoot);
-  }
-  attributeChangedCallback(attr, oldValue, newValue) {
-    this[attr] = newValue;
-  }
-}
-window.customElements.define("my-component", MyComponent);
