@@ -1,92 +1,44 @@
-import trim from "lodash-es/trim";
-import toUpper from "lodash-es/toUpper";
-import lowerCase from "lodash-es/lowerCase";
-import jion from "lodash-es/join";
-import reverse from "lodash-es/reverse";
-import find from "lodash-es/find";
-import reduce from "lodash-es/reduce";
-import cloneDeep from "lodash-es/cloneDeep";
-import sortedUniq from "lodash-es/sortedUniq";
-import assign from "lodash-es/assign";
-import times from "lodash-es/times";
-import map from "lodash-es/map";
-import keyBy from "lodash-es/keyBy";
-import debounce from "lodash-es/debounce";
-import filter from "lodash-es/filter";
-import includes from "lodash-es/includes";
-
-import "./style.scss";
-
-/*
-// dayjs
-const dayjs = require("dayjs");
-
-// dayjs ⚠️ requires utc plugin
-const utc = require("dayjs/plugin/utc");
-
-// dayjs ⚠️ requires LocalizedFormat plugin
-const LocalizedFormat = require("dayjs/plugin/localizedFormat");
-
-// dayjs ⚠️ requires isSameOrBefore plugin
-const isSameOrBefore = require("dayjs/plugin/isSameOrBefore");
-
-// dayjs ⚠️ requires isSameOrAfter plugin
-const isSameOrAfter = require("dayjs/plugin/isSameOrAfter");
-
-// dayjs ⚠️ requires relativeTime plugin
-const relativeTime = require("dayjs/plugin/relativeTime");
-
-// dayjs ⚠️ requires customParseFormat plugin
-const customParseFormat = require("dayjs/plugin/customParseFormat");
-
-// dayjs ⚠️ requires dayOfYear plugin
-const dayOfYear = require("dayjs/plugin/dayOfYear");
-
-// dayjs ⚠️ requires weekOfYear plugin
-const weekOfYear = require("dayjs/plugin/weekOfYear");
-
-// dayjs ⚠️ requires isoWeeksInYear plugin
-const isoWeeksInYear = require("dayjs/plugin/isoWeeksInYear");
-
-// dayjs ⚠️ requires minMax plugin
-const minMax = require("dayjs/plugin/minMax");
-
-// dayjs ⚠️ requires advancedFormat plugin to support more format tokens
-const advancedFormat = require("dayjs/plugin/customParseFormat");
-
-// dayjs ⚠️ requires isBetween plugin
-const isBetween = require("dayjs/plugin/isBetween");
-
-// dayjs ⚠️ requires isLeapYear plugin
-const isLeapYear = require("dayjs/plugin/isLeapYear");
-
-// dayjs ⚠️ requires weekDay plugin
-const weekDay = require("dayjs/plugin/weekDay");
-
-// dayjs ⚠️ requires quarterOfYear plugin
-const quarterOfYear = require("dayjs/plugin/quarterOfYear");
-
-// dayjs ⚠️ requires toArray plugin
-const toArray = require("dayjs/plugin/toArray");
-
-// dayjs ⚠️ requires toObject plugin
-const toObject = require("dayjs/plugin/toObject");
-
-// dayjs ⚠️ requires calendar plugin
-const calendar = require("dayjs/plugin/calendar");
-*/
+import _trim from "lodash-es/trim";
+import _toUpper from "lodash-es/toUpper";
+import _lowerCase from "lodash-es/lowerCase";
+import _jion from "lodash-es/join";
+import _reverse from "lodash-es/reverse";
+import _find from "lodash-es/find";
+import _reduce from "lodash-es/reduce";
+import _cloneDeep from "lodash-es/cloneDeep";
+import _sortedUniq from "lodash-es/sortedUniq";
+import _assign from "lodash-es/assign";
+import _times from "lodash-es/times";
+import _map from "lodash-es/map";
+import _keyBy from "lodash-es/keyBy";
+import _debounce from "lodash-es/debounce";
+import _filter from "lodash-es/filter";
+import _includes from "lodash-es/includes";
 
 import dayjs from "dayjs";
+import advancedFormat from "dayjs/plugin/advancedFormat";
+import badMutable from "dayjs/plugin/badMutable";
+import buddhistEra from "dayjs/plugin/buddhistEra";
+import calendar from "dayjs/plugin/calendar";
+import customParseFormat from "dayjs/plugin/customParseFormat";
+import dayOfYear from "dayjs/plugin/dayOfYear";
+import isBetween from "dayjs/plugin/isBetween";
+import isLeapYear from "dayjs/plugin/isLeapYear";
+import isMoment from "dayjs/plugin/isMoment";
+import isSameOrAfter from "dayjs/plugin/isSameOrAfter";
+import isSameOrBefore from "dayjs/plugin/isSameOrBefore";
+import isoWeeksInYear from "dayjs/plugin/isoWeeksInYear";
+import localeData from "dayjs/plugin/localeData";
+import localizedFormat from "dayjs/plugin/localizedFormat";
+import minMax from "dayjs/plugin/minMax";
+import quarterOfYear from "dayjs/plugin/quarterOfYear";
 import relativeTime from "dayjs/plugin/relativeTime";
-dayjs('2018-08-08') // parse
-/*
-
-/*
-// dayjs
-dayjs.extend(relativeTime);
-dayjs("2007-01-27").to(dayjs("2007-01-29"));
-// => "in 2 days"
-
+import toArray from "dayjs/plugin/toArray";
+import toObject from "dayjs/plugin/toObject";
+import utc from "dayjs/plugin/utc";
+import weekOfYear from "dayjs/plugin/weekOfYear";
+import weekYear from "dayjs/plugin/weekYear";
+import weekday from "dayjs/plugin/weekday";
 
 // dayjs
 dayjs("12-25-1995");
@@ -137,8 +89,7 @@ dayjs().set("day", -14);
 dayjs.extend(dayOfYear);
 dayjs().dayOfYear();
 // => 252
-dayjs().dayOfYear(256);
-// => "2018-09-13T09:12:49.695Z"
+
 
 
 // dayjs
@@ -199,11 +150,7 @@ dayjs("2007-01-27").to(dayjs("2007-01-29"));
 // => "in 2 days"
 
 
-// dayjs
-dayjs("2007-01-27").diff(dayjs("2007-01-29"), "milliseconds");
-// => -172800000
-dayjs("2007-01-27").diff(dayjs("2007-01-29"), "days");
-// => -2
+
 
 
 // dayjs
@@ -235,11 +182,10 @@ dayjs("2010-10-20").isBetween("2010-10-19", "2010-10-25");
 dayjs.extend(isLeapYear);
 dayjs("2000-01-01").isLeapYear();
 // => true
-*/
+
 
 // dayjs
 dayjs(new Date()).isValid();
-
 
 /*
 function validateEmail() {
@@ -251,9 +197,9 @@ emailInput.addEventListener("keyup", debounce(validateEmail, 500));
 */
 let x = `Hello     `;
 alert(x + `James`);
-alert(trim(x) + `James`);
-alert(toUpper(trim(x)));
-alert(jion(["Another", "module", "loaded!"], lowerCase("James")));
+alert(_trim(x) + `James`);
+alert(_toUpper(_trim(x)));
+alert(_jion(["Another", "module", "loaded!"], _lowerCase("James")));
 
 import { render, html } from "lit-html";
 // ES6
